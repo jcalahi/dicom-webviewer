@@ -1,0 +1,98 @@
+{
+    "took": 47,
+    "timed_out": false,
+    "_shards": {
+        "total": 5,
+        "successful": 5,
+        "failed": 0
+    },
+    "hits": {
+        "total": 5,
+        "max_score": 1.0,
+        "hits": [{
+            "_index": "pacs",
+            "_type": "dicoms",
+            "_id": "AVQU58vsrOMbcNtj90ss",
+            "_score": 1.0,
+            "_source": {
+                "InstanceCreationDate": "20050726",
+                "InstanceCreationTime": "103902",
+                "StudyTime": "010100.000000",
+                "AccessionNumber": "1",
+                "Modality": "CT",
+                "InstitutionName": "National Library of Medicine",
+                "InstitutionAddress": "http://www-creatis.insa-lyon.fr/Public/Gdcm",
+                "ReferringPhysicianName": "Unknown",
+                "StudyDescription": "Visible Human Female",
+                "SeriesDescription": "Resampled to 1mm voxels",
+                "PatientName": "Eve",
+                "PatientID": "000-000-001",
+                "PatientBirthDate": "20050101",
+                "PatientBirthTime": "010100.000000",
+                "PatientSex": "F",
+                "SliceThickness": "1.0",
+                "PatientPosition": "HFS",
+                "StudyID": "1",
+                "SeriesNumber": "1",
+                "InstanceNumber": "97",
+                "HDFSfilePath": "http://apsrd4190:8080/dicomviewer/images/vhf.41.dcm"
+            }
+        }, {
+            "_index": "pacs",
+            "_type": "dicoms",
+            "_id": "10",
+            "_score": 1.0,
+            "_source": {
+                "InstanceCreationDate": "20050726",
+                "InstanceCreationTime": "103851",
+                "StudyTime": "010100.000000",
+                "AccessionNumber": "1",
+                "Modality": "CT",
+                "InstitutionName": "National Library of Medicine",
+                "InstitutionAddress": "http://www-creatis.insa-lyon.fr/Public/Gdcm",
+                "ReferringPhysicianName": "Unknown",
+                "StudyDescription": "Visible Human Female",
+                "SeriesDescription": "Resampled to 1mm voxels",
+                "PatientName": "Eve",
+                "PatientID": "000-000-001",
+                "PatientBirthDate": "20050101",
+                "PatientBirthTime": "010100.000000",
+                "PatientSex": "F",
+                "SliceThickness": "1.0",
+                "PatientPosition": "HFS",
+                "StudyID": "2",
+                "SeriesNumber": "1",
+                "InstanceNumber": "41",
+                "HDFSfilePath": "http://localhost:8181/dicomviewer/images/vhf.50.dcm"
+            }
+        }, {
+            "_index": "pacs",
+            "_type": "dicoms",
+            "_id": "AVP53PWavZnd_f1zHmN1",
+            "_score": 1.0,
+            "_source": {
+                "InstanceCreationDate": "20050726",
+                "InstanceCreationTime": "103905",
+                "StudyTime": "010100.000000",
+                "AccessionNumber": "1",
+                "Modality": "CT",
+                "InstitutionName": "National Library of Medicine",
+                "InstitutionAddress": "http://www-creatis.insa-lyon.fr/Public/Gdcm",
+                "ReferringPhysicianName": "Unknown",
+                "StudyDescription": "Visible Human Female",
+                "SeriesDescription": "Resampled to 1mm voxels",
+                "PatientName": "Eve",
+                "PatientID": "000-000-001",
+                "PatientBirthDate": "20050101",
+                "PatientBirthTime": "010100.000000",
+                "PatientSex": "F",
+                "SliceThickness": "1.0",
+                "PatientPosition": "HFS",
+                "StudyID": "3",
+                "SeriesNumber": "1",
+                "InstanceNumber": "111",
+                "HDFSfilePath": "http://localhost:8181/dicomviewer/images/vhm.1034.dcm"
+            }
+        }]
+    }
+}

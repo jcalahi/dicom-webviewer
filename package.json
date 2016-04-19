@@ -1,0 +1,18 @@
+{
+  "name": "pacs-dicom-webview",
+  "version": "1.0.0",
+  "description": "Loads DICOM images in a browser",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jcalahi",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "body-parser": "^1.15.0",
+    "elasticsearch": "^11.0.1",
+    "express": "^4.13.4"
+  }
+}
