@@ -4,3 +4,4 @@ require('angular').module('dicomApp', [require('angular-ui-router')])
 
 // Controllers
 require('../controllers');
+require('../factories');

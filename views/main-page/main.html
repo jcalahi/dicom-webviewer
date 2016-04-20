@@ -1,1 +1,14 @@
-Hello Page
+<div>
+    <p>Patient Name:
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.name">
+    </p>
+    <p>Patiend ID:
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.id">
+    </p>
+    <p>Patient Birthdate:
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.birthDate">
+    </p>
+    <p>
+        <button ng-click="mainCtrl.searchBtn(mainCtrl.patient)">Search</button>
+    </p>
+</div>
