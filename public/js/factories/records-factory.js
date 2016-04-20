@@ -1,20 +1,17 @@
-function recordsFactory($http) {
+function recordsFactory($http, $httpParamSerializer) {
 
     return {
         getData: getData
     };
 
     function getData(patient) {
+        var qs = $httpParamSerializer(patient);
+        console.log(qs.replace(/=/gi, ':'));
         var req = {
             method: 'GET',
             url: '/_search',
-            /*params: {
-                patientName: patient.name,
-                patiendId: patient.id,
-                patientBirthDate: patient.birthDate
-            }*/
             params: {
-                q: "name:" + patient.name
+                q: qs.replace(/=/gi, ':')
             }
         };
 

@@ -1,10 +1,10 @@
 function MainController(recordsFactory) {
     var mc = this;
 
-    mc.patient = {};
+    mc.query = {};
 
-    mc.searchBtn = function(patient) {
-        recordsFactory.getData(patient).then(function(res) {
+    mc.searchBtn = function(query) {
+        recordsFactory.getData(query).then(function(res) {
             console.log(res);
         });
     };

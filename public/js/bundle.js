@@ -35414,13 +35414,53 @@ module.exports = angular;
 },{"./angular":2}],4:[function(require,module,exports){
 require('angular').module('dicomApp')
     .controller('MainController', require('./main-controller.js'));
+
 },{"./main-controller.js":5,"angular":3}],5:[function(require,module,exports){
-function MainController() {
+function MainController(recordsFactory) {
     var mc = this;
+
+    mc.query = {};
+
+    mc.searchBtn = function(query) {
+        recordsFactory.getData(query).then(function(res) {
+            console.log(res);
+        });
+    };
 }
 
 module.exports = MainController;
+
 },{}],6:[function(require,module,exports){
+require('angular').module('dicomApp')
+    .factory('recordsFactory', require('./records-factory.js'));
+
+},{"./records-factory.js":7,"angular":3}],7:[function(require,module,exports){
+function recordsFactory($http, $httpParamSerializer) {
+
+    return {
+        getData: getData
+    };
+
+    function getData(patient) {
+        var qs = $httpParamSerializer(patient);
+        console.log(qs.replace(/=/gi, ':'));
+        var req = {
+            method: 'GET',
+            url: '/_search',
+            params: {
+                q: qs.replace(/=/gi, ':')
+            }
+        };
+
+        return $http(req).then(function(response) {
+            return response;
+        });
+    }
+}
+
+module.exports = recordsFactory;
+
+},{}],8:[function(require,module,exports){
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider.state('main', {
         url: '/',
@@ -35433,12 +35473,14 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 }
 
 module.exports = config;
-},{}],7:[function(require,module,exports){
+
+},{}],9:[function(require,module,exports){
 'use strict';
 require('angular').module('dicomApp', [require('angular-ui-router')])
     .config(require('./config.js'));
 
 // Controllers
 require('../controllers');
+require('../factories');
 
-},{"../controllers":4,"./config.js":6,"angular":3,"angular-ui-router":1}]},{},[7]);
+},{"../controllers":4,"../factories":6,"./config.js":8,"angular":3,"angular-ui-router":1}]},{},[9]);

@@ -1,14 +1,14 @@
 <div>
     <p>Patient Name:
-        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.name">
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.query.PatientName">
     </p>
-    <p>Patiend ID:
-        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.id">
+    <p>Patient ID:
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.query.PatientID">
     </p>
     <p>Patient Birthdate:
-        <input type="text" placeholder="Type here" ng-model="mainCtrl.patient.birthDate">
+        <input type="text" placeholder="Type here" ng-model="mainCtrl.query.PatientBirthDate">
     </p>
     <p>
-        <button ng-click="mainCtrl.searchBtn(mainCtrl.patient)">Search</button>
+        <button ng-click="mainCtrl.searchBtn(mainCtrl.query)">Search</button>
     </p>
 </div>
