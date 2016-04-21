@@ -30,19 +30,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 results mb20">
-                <h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong
-                        class="text-danger">Eve, CT</strong></h2>
+                <h2 class="lead" ng-if="mainCtrl.resultsList.length > 0">
+                    <strong class="text-danger">{{ mainCtrl.totalHits }}</strong> matching records found <strong class="text-danger">{{ mainCtrl.queryString }}</strong>
+                </h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <dl>
-                    <dt><a href="#">Eve</a></dt>
-                    <dd>CT. Resampled to 1mm voxels</dd>
-                    <dt><a href="#">Eve</a></dt>
-                    <dd>Visible Human Female</dd>
-                    <dt><a href="#">Eve</a></dt>
-                    <dd>Resampled to 1mm voxels</dd>
+                <dl ng-repeat="result in mainCtrl.resultsList">
+                    <dt><a href="" ng-click="mainCtrl.displayData(result)">{{ result.PatientName }}</a></dt>
+                    <dd>{{ result.StudyDescription }}</dd>
                 </dl>
             </div>
             <div class="col-md-6 text-lg-center">
@@ -58,18 +55,15 @@
                     <tbody>
                     <tr>
                         <th scope="row">Patient Name</th>
-                        <td>Eve</td>
-
+                        <td>{{ mainCtrl.patient.PatientName }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Patient ID</th>
-                        <td>000-000-001</td>
-
+                        <td>{{ mainCtrl.patient.PatientID }}</td>
                     </tr>
-
                     <tr>
                         <th scope="row">Patient Gender</th>
-                        <td>F</td>
+                        <td>{{ mainCtrl.patient.PatientSex }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Patient Age</th>
@@ -88,23 +82,23 @@
                     </tr>
                     <tr>
                         <th scope="row">Study Date</th>
-                        <td>1-January-2005</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>Study Time</th>
-                        <td>1:01:00</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>Study ID</th>
-                        <td>1</td>
+                        <td>{{ mainCtrl.patient.StudyID }}</td>
                     </tr>
                     <tr>
                         <th>Study Modality</th>
-                        <td>CT</td>
+                        <td>{{ mainCtrl.patient.Modality }}</td>
                     </tr>
                     <tr>
                         <th>Study Description</th>
-                        <td>Visible Human Female</td>
+                        <td>{{ mainCtrl.patient.StudyDescription }}</td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -115,18 +109,16 @@
                     </tr>
                     <tr>
                         <th>Series Time</th>
-                        <td>0:00:00</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>Series Description</th>
-                        <td>Resampled to 1mm voxels</td>
+                        <td>{{ mainCtrl.patient.SeriesDescription }}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-
     </div>
 
     <footer class="footer">
@@ -272,8 +264,7 @@
                                     <label for="" class="col-md-4 form-control-label">Series Description</label>
 
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="" rows="3"
-                                                  placeholder="Resampled to 1mm voxels" ng-model="mainCtrl.query.SeriesDescription"></textarea>
+                                        <textarea class="form-control" id="" rows="3" placeholder="Resampled to 1mm voxels" ng-model="mainCtrl.query.SeriesDescription"></textarea>
                                     </div>
                                 </div>
                             </div>
