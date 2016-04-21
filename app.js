@@ -56,18 +56,12 @@ app.get('/', function(req, res) {
     });
 });
 
-app.post('/_search', function(req, res) {
-
+app.get('/_search', function(req, res) {
+    console.log(req.query);
     client.search({
         index: 'pacs',
         type: 'dicoms',
-        body: {
-            query: {
-                query_string: {
-                    query: req.body.queryString
-                }
-            }
-        }
+        q: req.query.q
     }).then(function(data) {
         res.json(data.hits.hits);
     }, function(err) {

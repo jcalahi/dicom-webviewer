@@ -11,9 +11,11 @@ function recordsFactory($http, $httpParamSerializer) {
         patient.queryString = str.replace(/&/gi, ' AND ');
 
         var req = {
-            method: 'POST',
+            method: 'GET',
             url: '/_search',
-            data: patient
+            params: {
+                q: patient.queryString
+            }
         };
 
         return $http(req).then(function(response) {
