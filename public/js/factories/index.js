@@ -1,2 +1,2 @@
 require('angular').module('dicomApp')
-    .factory('recordsFactory', require('./records-factory.js'));
+    .factory('searchFactory', require('./search-factory.js'));

@@ -1,14 +1,7 @@
 var express = require('express'),
-    es = require('elasticsearch'),
-    bodyParser = require('body-parser'),
     path = require('path'),
     app = express(), // jshint ignore:line
     PORT = process.env.PORT || 8080; // jshint ignore:line
-
-var client = new es.Client({
-    host: 'localhost:9200',
-    log: 'info'
-});
 
 /*client.index({
     index: 'pacs',
@@ -41,13 +34,11 @@ var client = new es.Client({
     console.log(response);
 });*/
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
 app.use(express.static(path.join(__dirname + '/public')));
 app.use('/dicomviewer', express.static(path.join(__dirname + '/views')));
+
+// Search route
+app.use(require('./routes/search'));
 
 // Load main page
 app.get('/', function(req, res) {
@@ -56,19 +47,8 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/_search', function(req, res) {
-    console.log(req.query);
-    client.search({
-        index: 'pacs',
-        type: 'dicoms',
-        q: req.query.q
-    }).then(function(data) {
-        res.json(data.hits.hits);
-    }, function(err) {
-        console.log(err.message);
-    });
-});
-
 app.listen(PORT, function() {
     console.log('Server running on port:', PORT);
 });
+
+

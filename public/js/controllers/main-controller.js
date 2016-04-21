@@ -1,14 +1,15 @@
-function MainController(recordsFactory) {
+function MainController(searchFactory) {
     var mc = this;
 
     mc.query = {};
 
     mc.searchBtn = function(query) {
-        recordsFactory.getData(query).then(function(res) {
+        console.log(query);
+        /*searchFactory.getData(query).then(function(res) {
             // reset fields
             mc.query = {};
             console.log(res);
-        });
+        });*/
     };
 }
 

@@ -1,4 +1,4 @@
-function recordsFactory($http, $httpParamSerializer) {
+function searchFactory($http, $httpParamSerializer) {
 
     return {
         getData: getData
@@ -24,4 +24,4 @@ function recordsFactory($http, $httpParamSerializer) {
     }
 }
 
-module.exports = recordsFactory;
+module.exports = searchFactory;

@@ -1,0 +1,324 @@
+
+
+/********** HEADER PANEL **********/
+/*************************************/
+
+.headerbar {
+    min-height: 90px;
+
+}
+
+.headerbar::after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+.header-border {
+    height: 3px;
+
+}
+
+.header-border-large {
+    height: 12px;
+
+}
+
+.cl1, .cl2, .cl3, .cl4, .cl5, .cl6 {
+
+    height: 3px;
+}
+
+.cl1-l, .cl2-l, .cl3-l, .cl4-l, .cl5-l, .cl6-l {
+
+    height: 12px;
+}
+
+.cl1 {
+
+    background-color: #d19000;
+}
+
+.cl2 {
+
+    background-color: #d45d00;
+}
+
+.cl3 {
+
+    background-color: #ffcd00;
+}
+
+.cl4 {
+
+    background-color: #bebe8a;
+}
+
+.cl5 {
+
+    background-color: #888b8d;
+}
+
+.cl6 {
+
+    background-color: #d2d2cf;
+}
+
+.cl1-l {
+
+    background-color: #d19000;
+}
+
+.cl2-l {
+
+    background-color: #d45d00;
+}
+
+.cl3-l {
+
+    background-color: #ffcd00;
+}
+
+.cl4-l {
+
+    background-color: #bebe8a;
+}
+
+.cl5-l {
+
+    background-color: #888b8d;
+}
+
+.cl6-l {
+
+    background-color: #d2d2cf;
+}
+
+
+/***** CUSTOM STYLES *****/
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mr5 {
+    margin-right: 5px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr15 {
+    margin-right: 15px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mr30 {
+    margin-right: 30px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.noborder {
+    border: none;
+}
+
+.noborder-top {
+    border-top: none !important;
+}
+
+.noshadow {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.border-right-0 {
+    border-right: 0;
+}
+
+.border-left-0 {
+    border-left: 0;
+}
+
+.nopadding {
+    padding: 0 !important;
+}
+
+.padding-top-0 {
+    padding-top: 0;
+}
+
+.padding5 {
+    padding: 5px;
+}
+
+.padding10 {
+    padding: 10px;
+}
+
+.padding20 {
+    padding: 20px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.dark {
+    color: #333;
+}
+
+.width100p {
+    width: 100%;
+}
+
+.width20 {
+    width: 20px;
+}
+
+.width30 {
+    width: 30px;
+}
+
+.inblock {
+    display: inline-block;
+}
+
+
+/*******Font Sizes******/
+
+.ft16 {
+
+    font-size: 16px;
+}
+
+.ft17 {
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.ft18-bold {
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #252525;
+}
+
+.ft11 {
+
+    font-size: 11px;
+
+}
+
+.ft20 {
+
+    font-size: 20px;
+}
+
+.ft24 {
+
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+
+/********** Sticky footer **********/
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 89px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer {
+
+    background: #464646;
+    padding-top: 20px;
+    font-size: 11px;
+}
+
+.footer .footer-links {
+
+    border-bottom: 1px solid #e87722;
+    padding-bottom: 10px;
+
+}
+
+.footer .footer-links a {
+    color: #ffffff;
+}
+
+.footer .footer-links b {
+    color: #a4a4a4;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.footer .copyright {
+    color: #a4a4a4;
+}
+
+.results { padding-left: 15px; border-bottom: 1px solid #ccc; }
+.results  h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin: 0; padding-bottom: 10px; }
+
+/********** 18. MEDIA QUERIES **********/
+/***************************************/
+
