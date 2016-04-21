@@ -25,16 +25,16 @@ var client = new es.Client({
         "ReferringPhysicianName": "Unknown",
         "StudyDescription": "Visible Human Female",
         "SeriesDescription": "Resampled to 1mm voxels",
-        "PatientName": "Dennis",
+        "PatientName": "Jhing",
         "PatientID": "000-000-001",
-        "PatientBirthDate": "20080101",
+        "PatientBirthDate": "20100101",
         "PatientBirthTime": "010100.000000",
         "PatientSex": "F",
         "SliceThickness": "1.0",
         "PatientPosition": "HFS",
         "StudyID": "1",
         "SeriesNumber": "1",
-        "InstanceNumber": "55",
+        "InstanceNumber": "66",
         "HDFSfilePath": "http://localhost:8080/dicomviewer/public/images/vhm.1035.dcm"
     }
 }, function(error, response) {
@@ -56,39 +56,20 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/_search', function(req, res) {
-    console.log(req.query);
-    /*client.search({
-        index: 'pacs',
-        type: 'dicoms'
-    }).then(function(data) {
-        res.json(data);
-    }, function(err) {
-        console.log(err.message);
-    });*/
-
-    /*client.search({
-        q: encodeURI("PatientName:" + req.body.name)*/
-
-    /*client.search({
-        body: {
-            filtered: {
-                q: req.body
-            }
-        }
-    }).then(function(data) {
-        res.json(data);
-    }, function(err) {
-        console.log(err.message);
-    });*/
+app.post('/_search', function(req, res) {
 
     client.search({
         index: 'pacs',
         type: 'dicoms',
-        q: req.query.q
-
+        body: {
+            query: {
+                query_string: {
+                    query: req.body.queryString
+                }
+            }
+        }
     }).then(function(data) {
-        res.json(data);
+        res.json(data.hits.hits);
     }, function(err) {
         console.log(err.message);
     });

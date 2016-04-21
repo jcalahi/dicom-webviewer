@@ -5,6 +5,8 @@ function MainController(recordsFactory) {
 
     mc.searchBtn = function(query) {
         recordsFactory.getData(query).then(function(res) {
+            // reset fields
+            mc.query = {};
             console.log(res);
         });
     };

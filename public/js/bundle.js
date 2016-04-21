@@ -35423,6 +35423,8 @@ function MainController(recordsFactory) {
 
     mc.searchBtn = function(query) {
         recordsFactory.getData(query).then(function(res) {
+            // reset fields
+            mc.query = {};
             console.log(res);
         });
     };
@@ -35443,13 +35445,14 @@ function recordsFactory($http, $httpParamSerializer) {
 
     function getData(patient) {
         var qs = $httpParamSerializer(patient);
-        console.log(qs.replace(/=/gi, ':'));
+        var str = qs.replace(/=/gi, ':');
+
+        patient.queryString = str.replace(/&/gi, ' AND ');
+
         var req = {
-            method: 'GET',
+            method: 'POST',
             url: '/_search',
-            params: {
-                q: qs.replace(/=/gi, ':')
-            }
+            data: patient
         };
 
         return $http(req).then(function(response) {
