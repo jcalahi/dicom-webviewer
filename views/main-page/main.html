@@ -9,8 +9,8 @@
                 <img src="/assets/images/optum.png"/>
             </div>
             <div class="col-md-3 text-md-right search-btn">
-                <button class="btn btn-lg btn-success mt10" href="#" role="button" data-toggle="modal"
-                        data-target="#mySearch">Launch Search
+                <button class="btn btn-lg btn-success mt10" href="#" role="button" data-toggle="modal" data-target="#mySearch">
+                    Launch Search
                 </button>
             </div>
         </div>
@@ -29,7 +29,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 results mb20">
+            <div class="col-md-12 results">
                 <h2 class="lead" ng-if="mainCtrl.resultsList.length > 0">
                     <strong class="text-danger">{{ mainCtrl.totalHits }}</strong> matching records found <strong class="text-danger">{{ mainCtrl.queryString }}</strong>
                 </h2>
@@ -37,16 +37,19 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <dl ng-repeat="result in mainCtrl.resultsList">
+                <dl ng-repeat="result in mainCtrl.resultsList track by $index">
                     <dt><a href="" ng-click="mainCtrl.displayData(result)">{{ result.PatientName }}</a></dt>
                     <dd>{{ result.StudyDescription }}</dd>
                 </dl>
             </div>
             <div class="col-md-6 text-lg-center">
-                <img src="/assets/images/wpid-myheadslice.png" alt=""/>
+                 <div oncontextmenu="return false" class='disable-selection noIbar' unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+                    <div id="dicomImage" style="width:750px;height:650px;top:0px;left:0px; position:absolute">
+                </div>
+            </div>
             </div>
             <div class="col-md-3 sidebar-rt">
-                <table class="table table-bordered">
+                <table class="table table-xs table-bordered">
                     <thead class="thead-default">
                     <tr>
                         <th colspan="2">DICOM Tags</th>
@@ -145,28 +148,28 @@
                                     <label for="" class="col-md-4 form-control-label">Patient Name</label>
                                     
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="Eve" ng-model="mainCtrl.query.PatientName">
+                                        <input type="text" class="form-control" id="" placeholder="Eve" ng-model="mainCtrl.query.PatientName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Patient ID</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="000-000-001" ng-model="mainCtrl.query.PatientID">
+                                        <input type="text" class="form-control" id="" placeholder="000-000-001" ng-model="mainCtrl.query.PatientID">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Patient Birthday</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="1-January-2005" ng-model="mainCtrl.query.PatientBirthDate">
+                                        <input type="text" class="form-control" id="" placeholder="1-January-2005" ng-model="mainCtrl.query.PatientBirthDate">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Patient Gender</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="F" ng-model="mainCtrl.query.PatientSex">
+                                        <input type="text" class="form-control" id="" placeholder="F" ng-model="mainCtrl.query.PatientSex">
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +178,14 @@
                                     <label for="" class="col-md-4 form-control-label">Patient Age</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="Age">
+                                        <input type="text" class="form-control" id="" placeholder="Age">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Patient Weight</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="Weight">
+                                        <input type="text" class="form-control" id="" placeholder="Weight">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -201,21 +204,21 @@
                                     <label for="" class="col-md-4 form-control-label">Study Date</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="Study Date">
+                                        <input type="text" class="form-control" id="" placeholder="Study Date">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Study Time</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="Study Time" ng-model="mainCtrl.query.StudyTime">
+                                        <input type="text" class="form-control" id="" placeholder="Study Time" ng-model="mainCtrl.query.StudyTime">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Study ID</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="1" ng-model="mainCtrl.query.StudyID">
+                                        <input type="text" class="form-control" id="" placeholder="1" ng-model="mainCtrl.query.StudyID">
                                     </div>
                                 </div>
 
@@ -225,7 +228,7 @@
                                     <label for="" class="col-md-4 form-control-label">Study Modality</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="CT">
+                                        <input type="text" class="form-control" id="" placeholder="CT">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -245,14 +248,14 @@
                                     <label for="" class="col-md-4 form-control-label">Series Date</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="1-January-2005">
+                                        <input type="text" class="form-control" id="" placeholder="1-January-2005">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Series Time</label>
 
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" id="" placeholder="0:00:00">
+                                        <input type="text" class="form-control" id="" placeholder="0:00:00">
                                     </div>
                                 </div>
 

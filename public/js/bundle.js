@@ -35416,27 +35416,22 @@ require('angular').module('dicomApp')
     .controller('MainController', require('./main-controller.js'));
 
 },{"./main-controller.js":5,"angular":3}],5:[function(require,module,exports){
-function MainController(searchFactory) {
+function MainController(searchFactory, imageFactory) {
     var mc = this;
-
     // Holds no. of results
     mc.totalHits = 0;
     // Contains list of objects
     mc.resultsList = [];
     // Contains fields to populate tags
     mc.patient = {};
-    
     mc.queryString = '';
-
-    mc.query = {
-        PatientName: "jhing"
-    };
+    mc.query = {};
     /**
      * Modal search button function that calls the service
      * @param {Object} query - fields to look up in ES 
      */
     mc.searchBtn = function(query) {
-        searchFactory.getData(mc.query).then(function(res) {
+        searchFactory.getData(query).then(function(res) {
             
             mc.totalHits = res.data.length;
             
@@ -35451,6 +35446,7 @@ function MainController(searchFactory) {
      */
     mc.displayData = function(data) {
         mc.patient = data;
+        imageFactory.loadImage(data.HDFSfilePath);
     };
     /**
      * Builds a list of records returned by the service
@@ -35467,10 +35463,42 @@ function MainController(searchFactory) {
 module.exports = MainController;
 
 },{}],6:[function(require,module,exports){
-require('angular').module('dicomApp')
-    .factory('searchFactory', require('./search-factory.js'));
+function imageFactory() {
+    
+    return {
+        loadImage: loadImage
+    };
+    
+    function loadImage(source) {
+        var element = $('#dicomImage').get(0),
+            loaded = false;
+            
+        cornerstone.enable(element);
+        
+        cornerstone.loadAndCacheImage("wadouri:" + source).then(function(image) {
+            var viewport = cornerstone.getDefaultViewportForImage(element, image);
+            cornerstone.displayImage(element, image, viewport);
 
-},{"./search-factory.js":7,"angular":3}],7:[function(require,module,exports){
+            if (loaded === false) {
+                cornerstoneTools.mouseInput.enable(element);
+                cornerstoneTools.mouseWheelInput.enable(element);
+                cornerstoneTools.wwwc.activate(element, 1);
+                cornerstoneTools.pan.activate(element, 2);
+                cornerstoneTools.zoom.activate(element, 4);
+                cornerstoneTools.zoomWheel.activate(element);
+                loaded = true;
+            }
+        });
+    }
+}
+
+module.exports = imageFactory;
+},{}],7:[function(require,module,exports){
+require('angular').module('dicomApp')
+    .factory('searchFactory', require('./search-factory.js'))
+    .factory('imageFactory', require('./image-factory.js'));
+
+},{"./image-factory.js":6,"./search-factory.js":8,"angular":3}],8:[function(require,module,exports){
 function searchFactory($http, $httpParamSerializer) {
 
     return {
@@ -35499,7 +35527,7 @@ function searchFactory($http, $httpParamSerializer) {
 
 module.exports = searchFactory;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider.state('main', {
         url: '/',
@@ -35513,7 +35541,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 
 module.exports = config;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict'; // jshint ignore:line
 require('angular').module('dicomApp', [require('angular-ui-router')])
     .config(require('./config.js'));
@@ -35522,4 +35550,4 @@ require('angular').module('dicomApp', [require('angular-ui-router')])
 require('../controllers');
 require('../factories');
 
-},{"../controllers":4,"../factories":6,"./config.js":8,"angular":3,"angular-ui-router":1}]},{},[9]);
+},{"../controllers":4,"../factories":7,"./config.js":9,"angular":3,"angular-ui-router":1}]},{},[10]);

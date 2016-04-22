@@ -1,14 +1,14 @@
 var router = require('express').Router(),
     client = require('../services/elastic-search');
 
-router.use(function(req, res, next) {
-    
+router.use(function (req, res, next) {
+
     client.search({
         index: 'pacs',
         type: 'dicoms',
         q: req.query.q
-    }).then(function(data) {
-        
+    }).then(function (data) {
+
         if (data.hits.total > 0) {
             //res.json(data.hits.hits);
             res.searchResults = data.hits.hits;
@@ -18,14 +18,14 @@ router.use(function(req, res, next) {
                 message: 'No records found'
             });
         }
-        
-    }, function(err) {
+
+    }, function (err) {
         console.log(err.message);
     });
-    
+
 });
 
-router.get('/_search', function(req, res) {
+router.get('/_search', function (req, res) {
     res.json(res.searchResults);
 });
 

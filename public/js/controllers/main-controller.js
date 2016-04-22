@@ -1,24 +1,19 @@
-function MainController(searchFactory) {
+function MainController(searchFactory, imageFactory) {
     var mc = this;
-
     // Holds no. of results
     mc.totalHits = 0;
     // Contains list of objects
     mc.resultsList = [];
     // Contains fields to populate tags
     mc.patient = {};
-    
     mc.queryString = '';
-
-    mc.query = {
-        PatientName: "jhing"
-    };
+    mc.query = {};
     /**
      * Modal search button function that calls the service
      * @param {Object} query - fields to look up in ES 
      */
     mc.searchBtn = function(query) {
-        searchFactory.getData(mc.query).then(function(res) {
+        searchFactory.getData(query).then(function(res) {
             
             mc.totalHits = res.data.length;
             
@@ -33,6 +28,7 @@ function MainController(searchFactory) {
      */
     mc.displayData = function(data) {
         mc.patient = data;
+        imageFactory.loadImage(data.HDFSfilePath);
     };
     /**
      * Builds a list of records returned by the service
