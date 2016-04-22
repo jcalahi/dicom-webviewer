@@ -35418,33 +35418,44 @@ require('angular').module('dicomApp')
 },{"./main-controller.js":5,"angular":3}],5:[function(require,module,exports){
 function MainController(searchFactory, imageFactory) {
     var mc = this;
-    // Holds no. of results
-    mc.totalHits = 0;
     // Contains list of objects
     mc.resultsList = [];
     // Contains fields to populate tags
     mc.patient = {};
-    mc.queryString = '';
+    // Holds no. of results
+    mc.totalHits = 0;
+    mc.isLookUp = false;
     mc.query = {};
     /**
      * Modal search button function that calls the service
      * @param {Object} query - fields to look up in ES 
      */
-    mc.searchBtn = function(query) {
-        searchFactory.getData(query).then(function(res) {
-            
-            mc.totalHits = res.data.length;
-            
-            buildList(res.data);
+    mc.searchBtn = function (query) {
+
+        mc.isLookUp = true;
+
+        searchFactory.getData(query).then(function (res) {
+
+            if (res.data.message) {
+                clearResults();
+                $('#dicomImage').hide();
+            } else {
+                mc.resultsList = [];
+                mc.totalHits = res.data.length;
+                buildList(res.data);
+            }
             // reset fields
             mc.query = {};
+            // close modal
+            $('#mySearch').modal('hide');
         });
+
     };
     /**
      * Displays the image and populates the DICOM tags
      * @param {Object} data - selected patient record to be displayed
      */
-    mc.displayData = function(data) {
+    mc.displayData = function (data) {
         mc.patient = data;
         imageFactory.loadImage(data.HDFSfilePath);
     };
@@ -35453,11 +35464,17 @@ function MainController(searchFactory, imageFactory) {
      * @param {Array} results - array of objects
      */
     function buildList(results) {
-        angular.forEach(results, function(data) {
+        angular.forEach(results, function (data) {
             mc.resultsList.push(data._source);
         });
     }
-    
+
+    function clearResults() {
+        mc.resultsList = [];
+        mc.totalHits = 0;
+        mc.patient = {};
+    }
+
 }
 
 module.exports = MainController;
