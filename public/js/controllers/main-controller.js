@@ -1,5 +1,6 @@
 function MainController(searchFactory, imageFactory) {
-    var mc = this;
+    var mc = this,
+        datePattern = /(\d{4})(\d{2})(\d{2})/;
     // Contains list of objects
     mc.resultsList = [];
     // Contains fields to populate tags
@@ -17,7 +18,6 @@ function MainController(searchFactory, imageFactory) {
         mc.isLookUp = true;
 
         searchFactory.getData(query).then(function (res) {
-
             if (res.data.message) {
                 clearResults();
                 $('#dicomImage').hide();
@@ -38,7 +38,11 @@ function MainController(searchFactory, imageFactory) {
      * @param {Object} data - selected patient record to be displayed
      */
     mc.displayData = function (data) {
+        
         mc.patient = data;
+        mc.patient.PatientBirthDate = new Date(mc.patient.PatientBirthDate.replace(datePattern, '$1-$2-$3'));
+        mc.patient.InstanceCreationDate = new Date(mc.patient.InstanceCreationDate.replace(datePattern, '$1-$2-$3'));
+        
         imageFactory.loadImage(data.HDFSfilePath);
     };
     /**

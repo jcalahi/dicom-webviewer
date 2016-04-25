@@ -7,7 +7,7 @@ function searchFactory($http, $httpParamSerializer) {
     function getData(patient) {
         var qs = $httpParamSerializer(patient);
         var str = qs.replace(/=/gi, ':');
-
+        
         patient.queryString = str.replace(/&/gi, ' AND ');
 
         var req = {

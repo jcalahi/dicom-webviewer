@@ -65,58 +65,77 @@
                         <td>{{ mainCtrl.patient.PatientID }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Patient Gender</th>
+                        <th scope="row">Patient Birth Date</th>
+                        <td>{{ mainCtrl.patient.PatientBirthDate | date: 'longDate' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Patient Birth Time</th>
+                        <td>{{ mainCtrl.patient.PatientBirthTime }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Patient Sex</th>
                         <td>{{ mainCtrl.patient.PatientSex }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Patient Age</th>
-                        <td></td>
+                        <th scope="row">Patient Position</th>
+                        <td>{{ mainCtrl.patient.PatientPosition }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Patient Weight</th>
-                        <td></td>
+                        <th scope="row">Instance Creation Date</th>
+                        <td>{{ mainCtrl.patient.InstanceCreationDate | date: 'longDate' }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Patient Address</th>
-                        <td></td>
+                        <th scope="row">Instance Creation Time</th>
+                        <td>{{ mainCtrl.patient.InstanceCreationTime }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
+                        <th scope="row">Study Time</th>
+                        <td>{{ mainCtrl.patient.StudyTime }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Study Date</th>
-                        <td></td>
+                        <th scope="row">Accession Number</th>
+                        <td>{{ mainCtrl.patient.AccessionNumber }}</td>
                     </tr>
                     <tr>
-                        <th>Study Time</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Study ID</th>
-                        <td>{{ mainCtrl.patient.StudyID }}</td>
-                    </tr>
-                    <tr>
-                        <th>Study Modality</th>
+                        <th scope="row">Modality</th>
                         <td>{{ mainCtrl.patient.Modality }}</td>
                     </tr>
                     <tr>
-                        <th>Study Description</th>
+                        <th scope="row">Institution Name</th>
+                        <td>{{ mainCtrl.patient.InstitutionName }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Institution Address</th>
+                        <td>{{ mainCtrl.patient.InstitutionAddress }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Referring Physician Name</th>
+                        <td>{{ mainCtrl.patient.ReferringPhysicianName }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Study Description</th>
                         <td>{{ mainCtrl.patient.StudyDescription }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
-                    </tr>
-                    <tr>
-                        <th>Series Date</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Series Time</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Series Description</th>
+                        <th scope="row">Series Description</th>
                         <td>{{ mainCtrl.patient.SeriesDescription }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">Slice Thickness</th>
+                        <td>{{ mainCtrl.patient.SliceThickness }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Study ID</th>
+                        <td>{{ mainCtrl.patient.StudyID }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Series Number</th>
+                        <td>{{ mainCtrl.patient.SeriesNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Instance Number</th>
+                        <td>{{ mainCtrl.patient.InstitutionName }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -138,7 +157,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">DICOM Search</h4>
+                    <h4 class="modal-title" id="myModalLabel">Search Record</h4>
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -159,52 +178,45 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Patient Birthday</label>
+                                    <label for="" class="col-md-4 form-control-label">Patient Birth Date</label>
 
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" id="" ng-model="mainCtrl.query.PatientBirthDate">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Patient Gender</label>
+                                    <label for="" class="col-md-4 form-control-label">Patient Birth Time</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.PatientBirthTime">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Patient Sex</label>
 
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" id="" ng-model="mainCtrl.query.PatientSex">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Patient Age</label>
+                                    <label for="" class="col-md-4 form-control-label">Patient Position</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.PatientPosition">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Patient Weight</label>
+                                    <label for="" class="col-md-4 form-control-label">Instance Creation Date</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.InstanceCreationDate">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Patient Address</label>
+                                    <label for="" class="col-md-4 form-control-label">Instance Creation Time</label>
 
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Study Date</label>
-
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.InstanceCreationDate">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -215,58 +227,82 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Study ID</label>
+                                    <label for="" class="col-md-4 form-control-label">Accession Number</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.StudyID">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.AccessionNumber">
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Study Modality</label>
+                                    <label for="" class="col-md-4 form-control-label">Modality</label>
 
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.Modality">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Institution Name</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.InstitutionName">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Institution Address</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.InstitutionAddress">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Referring Physician Name</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.ReferringPhysicianName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Study Description</label>
 
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="" rows="3" ng-model="mainCtrl.query.StudyDescription"></textarea>
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.StudyDescription">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Series Date</label>
-
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-md-4 form-control-label">Series Time</label>
-
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-6">
-
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 form-control-label">Series Description</label>
 
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="" rows="3" ng-model="mainCtrl.query.SeriesDescription"></textarea>
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.SeriesDescription">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Slice Thickness</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.SliceThickness">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Study ID</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.StudyID">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Series Number</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.SeriesNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 form-control-label">Instance Number</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="" ng-model="mainCtrl.query.InstanceNumber">
                                     </div>
                                 </div>
                             </div>

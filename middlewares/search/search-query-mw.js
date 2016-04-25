@@ -2,8 +2,6 @@ var client = require('../../helpers/elastic-search');
 
 function searchMiddlware(req, res, next) {
     client.search({
-        index: 'pacs',
-        type: 'dicoms',
         q: req.query.q
     }).then(function(data) {
         
