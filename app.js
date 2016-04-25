@@ -6,8 +6,8 @@ var express = require('express'),
 app.use(express.static(path.join(__dirname + '/public')));
 app.use('/dicomviewer', express.static(path.join(__dirname + '/views')));
 
-// Search route
-app.use(require('./routes/search'));
+// Load controllers
+app.use(require('./controllers'));
 
 // Load main page
 app.get('/', function(req, res) {
@@ -19,5 +19,3 @@ app.get('/', function(req, res) {
 app.listen(PORT, function() {
     console.log('Server running on port:', PORT);
 });
-
-

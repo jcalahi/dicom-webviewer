@@ -4,7 +4,7 @@
   "description": "Loads DICOM images in a browser",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "jcalahi",
   "license": "ISC",
@@ -14,6 +14,6 @@
     "body-parser": "^1.15.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
-    "tether": "^1.2.4"
+    "nodemon": "^1.9.1"
   }
 }
