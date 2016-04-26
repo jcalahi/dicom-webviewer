@@ -35455,7 +35455,10 @@ function MainController(searchFactory, imageFactory) {
      */
     mc.displayData = function (data) {
         mc.patient = data;
-        imageFactory.loadImage(data.HDFSfilePath);
+        //imageFactory.loadImage(data.HDFSfilePath);
+        imageFactory.setPath({ imagePath: "/datalake/corporate/ses_dlpoc/dmundada/pacsstorage/DICOMFile_Eve_000-000-001_1_97_103902_1460145105044.dcm" }).then(function(resp) {
+            //imageFactory.loadImage(resp);
+        });
     };
     /**
      * Builds a list of records returned by the service
@@ -35478,10 +35481,11 @@ function MainController(searchFactory, imageFactory) {
 module.exports = MainController;
 
 },{}],6:[function(require,module,exports){
-function imageFactory() {
+function imageFactory($http, PACS_API) {
     
     return {
-        loadImage: loadImage
+        loadImage: loadImage,
+        setPath: setPath
     };
     /**
      * Renders DICOM images from the specified URL
@@ -35493,19 +35497,32 @@ function imageFactory() {
             
         cornerstone.enable(element);
         
-        cornerstone.loadAndCacheImage("wadouri:" + source).then(function(image) {
-            var viewport = cornerstone.getDefaultViewportForImage(element, image);
-            cornerstone.displayImage(element, image, viewport);
+        // cornerstone.loadAndCacheImage("wadouri:" + source).then(function(image) {
+        //     var viewport = cornerstone.getDefaultViewportForImage(element, image);
+        //     cornerstone.displayImage(element, image, viewport);
 
-            if (loaded === false) {
-                cornerstoneTools.mouseInput.enable(element);
-                cornerstoneTools.mouseWheelInput.enable(element);
-                cornerstoneTools.wwwc.activate(element, 1);
-                cornerstoneTools.pan.activate(element, 2);
-                cornerstoneTools.zoom.activate(element, 4);
-                cornerstoneTools.zoomWheel.activate(element);
-                loaded = true;
-            }
+        //     if (loaded === false) {
+        //         cornerstoneTools.mouseInput.enable(element);
+        //         cornerstoneTools.mouseWheelInput.enable(element);
+        //         cornerstoneTools.wwwc.activate(element, 1);
+        //         cornerstoneTools.pan.activate(element, 2);
+        //         cornerstoneTools.zoom.activate(element, 4);
+        //         cornerstoneTools.zoomWheel.activate(element);
+        //         loaded = true;
+        //     }
+        // });
+        
+    }
+    
+    function setPath(path) {
+        var config = {
+            method: 'POST',
+            url: PACS_API,
+            data: path
+        };
+        
+        return $http(config).then(function(res) {
+            return res;
         });
     }
 }
@@ -35517,7 +35534,7 @@ require('angular').module('dicomApp')
     .factory('imageFactory', require('./image-factory.js'));
 
 },{"./image-factory.js":6,"./search-factory.js":8,"angular":3}],8:[function(require,module,exports){
-function searchFactory($http, $httpParamSerializer) {
+function searchFactory($http, $httpParamSerializer, ES_API) {
 
     return {
         getData: getData
@@ -35534,7 +35551,7 @@ function searchFactory($http, $httpParamSerializer) {
 
         var req = {
             method: 'GET',
-            url: '/_search',
+            url: ES_API,
             params: {
                 q: patient.queryString
             }
@@ -35581,8 +35598,13 @@ module.exports = config;
 
 require('angular').module('dicomApp', [require('angular-ui-router')])
     .config(require('./config.js'));
-
+// Shared
+require('../shared/values.js');
 // Controllers
 require('../controllers');
 require('../factories');
-},{"../controllers":4,"../factories":7,"./config.js":9,"angular":3,"angular-ui-router":1}]},{},[10]);
+},{"../controllers":4,"../factories":7,"../shared/values.js":11,"./config.js":9,"angular":3,"angular-ui-router":1}],11:[function(require,module,exports){
+require('angular').module('dicomApp')
+    .value('ES_API', '/_search')
+    .value('PACS_API', 'http://apsrd4190:8080/pacs-service/dicomImage');
+},{"angular":3}]},{},[10]);

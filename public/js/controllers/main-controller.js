@@ -38,7 +38,10 @@ function MainController(searchFactory, imageFactory) {
      */
     mc.displayData = function (data) {
         mc.patient = data;
-        imageFactory.loadImage(data.HDFSfilePath);
+        //imageFactory.loadImage(data.HDFSfilePath);
+        imageFactory.setPath({ imagePath: "/datalake/corporate/ses_dlpoc/dmundada/pacsstorage/DICOMFile_Eve_000-000-001_1_97_103902_1460145105044.dcm" }).then(function(resp) {
+            //imageFactory.loadImage(resp);
+        });
     };
     /**
      * Builds a list of records returned by the service

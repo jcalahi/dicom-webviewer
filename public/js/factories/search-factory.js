@@ -1,4 +1,4 @@
-function searchFactory($http, $httpParamSerializer) {
+function searchFactory($http, $httpParamSerializer, ES_API) {
 
     return {
         getData: getData
@@ -15,7 +15,7 @@ function searchFactory($http, $httpParamSerializer) {
 
         var req = {
             method: 'GET',
-            url: '/_search',
+            url: ES_API,
             params: {
                 q: patient.queryString
             }
