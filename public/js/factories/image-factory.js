@@ -3,7 +3,10 @@ function imageFactory() {
     return {
         loadImage: loadImage
     };
-    
+    /**
+     * Renders DICOM images from the specified URL
+     * @param {String} source - URL of the image
+     */
     function loadImage(source) {
         var element = $('#dicomImage').get(0),
             loaded = false;

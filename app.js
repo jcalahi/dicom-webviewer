@@ -25,7 +25,7 @@ var hdfs = WebHDFS.createClient({
     port: 50070
 });
 
-
+console.log(hdfs);
 var readFileStream = hdfs.createReadStream("/datalake/corporate/ses_dlpoc/dmundada/pacsstorage/DICOMFile_Eve_000-000-001_1_41_103851_1460639710047.dcm");
 
 readFileStream.on('error', function(error) {

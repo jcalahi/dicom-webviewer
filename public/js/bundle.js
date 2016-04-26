@@ -35414,11 +35414,9 @@ module.exports = angular;
 },{"./angular":2}],4:[function(require,module,exports){
 require('angular').module('dicomApp')
     .controller('MainController', require('./main-controller.js'));
-
 },{"./main-controller.js":5,"angular":3}],5:[function(require,module,exports){
 function MainController(searchFactory, imageFactory) {
-    var mc = this,
-        datePattern = /(\d{4})(\d{2})(\d{2})/;
+    var mc = this;
     // Contains list of objects
     mc.resultsList = [];
     // Contains fields to populate tags
@@ -35456,11 +35454,7 @@ function MainController(searchFactory, imageFactory) {
      * @param {Object} data - selected patient record to be displayed
      */
     mc.displayData = function (data) {
-        
         mc.patient = data;
-        mc.patient.PatientBirthDate = new Date(mc.patient.PatientBirthDate.replace(datePattern, '$1-$2-$3'));
-        mc.patient.InstanceCreationDate = new Date(mc.patient.InstanceCreationDate.replace(datePattern, '$1-$2-$3'));
-        
         imageFactory.loadImage(data.HDFSfilePath);
     };
     /**
@@ -35478,7 +35472,7 @@ function MainController(searchFactory, imageFactory) {
         mc.totalHits = 0;
         mc.patient = {};
     }
-
+    
 }
 
 module.exports = MainController;
@@ -35489,7 +35483,10 @@ function imageFactory() {
     return {
         loadImage: loadImage
     };
-    
+    /**
+     * Renders DICOM images from the specified URL
+     * @param {String} source - URL of the image
+     */
     function loadImage(source) {
         var element = $('#dicomImage').get(0),
             loaded = false;
@@ -35525,7 +35522,10 @@ function searchFactory($http, $httpParamSerializer) {
     return {
         getData: getData
     };
-
+    /**
+     * Queries the Elastic Search and returns the patient record
+     * @param {Object} patient - selected patient record to be displayed
+     */
     function getData(patient) {
         var qs = $httpParamSerializer(patient);
         var str = qs.replace(/=/gi, ':');
@@ -35541,8 +35541,22 @@ function searchFactory($http, $httpParamSerializer) {
         };
 
         return $http(req).then(function(response) {
+            
+            angular.forEach(response.data, function(val) {
+                val._source.PatientBirthDate = dateUtil(val._source.PatientBirthDate);
+                val._source.InstanceCreationDate = dateUtil(val._source.InstanceCreationDate);
+            });
+            
             return response;
         });
+    }
+    /**
+     * Converts date YYYYMMDD to long date format
+     * @param {String} inputDate - date to be converted
+     */
+    function dateUtil(inputDate) {
+        var datePattern = /(\d{4})(\d{2})(\d{2})/;
+        return new Date(inputDate.replace(datePattern, '$1-$2-$3'));
     }
 }
 
@@ -35571,5 +35585,4 @@ require('angular').module('dicomApp', [require('angular-ui-router')])
 // Controllers
 require('../controllers');
 require('../factories');
-
 },{"../controllers":4,"../factories":7,"./config.js":9,"angular":3,"angular-ui-router":1}]},{},[10]);
