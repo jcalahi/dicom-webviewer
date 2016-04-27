@@ -2,7 +2,7 @@ var express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
     app = express(), // jshint ignore:line
-    PORT = process.env.PORT || 3000; // jshint ignore:line
+    PORT = process.env.PORT || 3100; // jshint ignore:line
 
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(favicon(path.join(__dirname + '/public/images/optum_favicon.ico')));

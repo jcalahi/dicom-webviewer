@@ -14,28 +14,32 @@ function imageFactory($http, PACS_API) {
             
         cornerstone.enable(element);
         
-        // cornerstone.loadAndCacheImage("wadouri:" + source).then(function(image) {
-        //     var viewport = cornerstone.getDefaultViewportForImage(element, image);
-        //     cornerstone.displayImage(element, image, viewport);
+        cornerstone.loadAndCacheImage("wadouri:" + source).then(function(image) {
+            var viewport = cornerstone.getDefaultViewportForImage(element, image);
+            cornerstone.displayImage(element, image, viewport);
 
-        //     if (loaded === false) {
-        //         cornerstoneTools.mouseInput.enable(element);
-        //         cornerstoneTools.mouseWheelInput.enable(element);
-        //         cornerstoneTools.wwwc.activate(element, 1);
-        //         cornerstoneTools.pan.activate(element, 2);
-        //         cornerstoneTools.zoom.activate(element, 4);
-        //         cornerstoneTools.zoomWheel.activate(element);
-        //         loaded = true;
-        //     }
-        // });
-        
+            if (loaded === false) {
+                cornerstoneTools.mouseInput.enable(element);
+                cornerstoneTools.mouseWheelInput.enable(element);
+                cornerstoneTools.wwwc.activate(element, 1);
+                cornerstoneTools.pan.activate(element, 2);
+                cornerstoneTools.zoom.activate(element, 4);
+                cornerstoneTools.zoomWheel.activate(element);
+                loaded = true;
+            }
+        });
     }
     
     function setPath(path) {
         var config = {
             method: 'POST',
             url: PACS_API,
-            data: path
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                imagePath: path
+            }
         };
         
         return $http(config).then(function(res) {

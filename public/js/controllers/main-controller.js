@@ -38,9 +38,16 @@ function MainController(searchFactory, imageFactory) {
      */
     mc.displayData = function (data) {
         mc.patient = data;
-        //imageFactory.loadImage(data.HDFSfilePath);
-        imageFactory.setPath({ imagePath: "/datalake/corporate/ses_dlpoc/dmundada/pacsstorage/DICOMFile_Eve_000-000-001_1_97_103902_1460145105044.dcm" }).then(function(resp) {
-            //imageFactory.loadImage(resp);
+        
+        imageFactory.setPath(data.HDFSfilePath).then(function (resp) {
+            
+            if (resp.data.path === 'error') {
+                console.log('Image not found');
+            } else {
+                var path = resp.data.path,
+                inc = path.indexOf('/images');
+                imageFactory.loadImage(path.substring(inc, path.length));
+            }
         });
     };
     /**
@@ -58,7 +65,6 @@ function MainController(searchFactory, imageFactory) {
         mc.totalHits = 0;
         mc.patient = {};
     }
-    
 }
 
 module.exports = MainController;
